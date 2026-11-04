@@ -10,8 +10,16 @@ git pull --ff-only
 echo "== Server: dependencies and database"
 (cd server && npm ci --omit=dev && npm run db:migrate)
 
+# aaPanel locks files such as .user.ini inside the website folder, so build elsewhere and copy across.
 echo "== Client: build"
-(cd client && npm ci && npm run build)
+(
+  cd client
+  npm ci
+  npx vite build --outDir dist-build --emptyOutDir
+  mkdir -p dist
+  rsync -a --delete --exclude=.user.ini --exclude=.htaccess dist-build/ dist/
+  rm -rf dist-build
+)
 
 echo "== Restarting the API"
 pm2 restart finora-api --update-env
