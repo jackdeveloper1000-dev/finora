@@ -1,0 +1,22 @@
+/* Expert review: customer card, reviewer queue and conversation */
+.thread { display: grid; gap: 14px; }
+.thread__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.bubble { max-width: min(560px, 92%); padding: 10px 14px; border-radius: var(--radius); background: #eef1f7; display: grid; gap: 2px; }
+.bubble strong { font-size: 0.82rem; }
+.bubble p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.bubble em { font-size: 0.75rem; color: var(--text-muted); font-style: normal; }
+.bubble--customer { justify-self: end; background: var(--primary-50); }
+.thread__form { display: grid; gap: 10px; }
+
+.queue { list-style: none; margin: 0; padding: 0; }
+.queue li + li { border-top: 1px solid var(--border); }
+.queue__item { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 14px 8px; color: inherit; text-decoration: none; border-radius: var(--radius-sm); }
+.queue__item:hover { background: var(--primary-50); }
+.queue__main { display: grid; gap: 2px; min-width: 0; }
+.queue__note { font-size: 0.88rem; overflow-wrap: anywhere; }
+
+.review-summary .itr-fields { margin-bottom: 0; }
+
+@media (max-width: 600px) {
+  .queue__item { align-items: flex-start; flex-direction: column; gap: 8px; }
+}

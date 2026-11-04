@@ -1,0 +1,17 @@
+# Dependencies and build output
+node_modules/
+client/dist/
+.vite/
+
+# Secrets and user data: never commit these
+.env
+.env.*
+!.env.example
+server/uploads/
+uploads/
+
+# Logs, local scratch files and packages
+*.log
+server/.*.mjs
+deploy/
+.DS_Store

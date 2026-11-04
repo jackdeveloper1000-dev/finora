@@ -1,0 +1,21 @@
+.itr-fields { margin: 0; display: grid; }
+.itr-field { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 11px 0; border-top: 1px solid var(--border); }
+.itr-field:first-child { border-top: 0; padding-top: 0; }
+.itr-field dt { display: grid; gap: 1px; color: var(--text-muted); font-size: 0.9rem; min-width: 0; }
+.itr-field__evidence { font-size: 0.72rem; color: var(--text-faint); }
+.itr-field dd { margin: 0; font-weight: 600; text-align: right; word-break: break-word; max-width: 60%; }
+.itr-field.is-amount dd { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.confirmations { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.print-only { display: none; }
+
+@media (max-width: 720px) { .itr-field dd { max-width: 55%; } }
+
+@media print {
+  body { background: #fff; font-size: 12px; }
+  .sidebar, .topbar, .bottom-nav, .no-print { display: none !important; }
+  .shell { display: block; }
+  .content { max-width: none; padding: 0; gap: 12px; }
+  .card { box-shadow: none; break-inside: avoid; padding: 14px; }
+  .print-only { display: block; }
+  .print-note { padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; color: var(--text-muted); }
+}
