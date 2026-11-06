@@ -1,7 +1,7 @@
-import { ArrowRight, Check, CheckCircle2, ChevronRight, Sparkles, Wallet } from 'lucide-react';
+import { ArrowRight, Check, CheckCircle2, ChevronRight, Sparkles, Star, Wallet } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Logo from '../ui/Logo';
-import { ASSURANCES, FEATURES, PLANS, SAMPLE_INSIGHTS, SAMPLE_SUMMARY, STEPS } from './content';
+import { FEATURES, PLANS, SAMPLE_INSIGHTS, SAMPLE_SUMMARY, STEPS, TESTIMONIALS } from './content';
 
 export function HowItWorks() {
   return (
@@ -41,7 +41,7 @@ function SummaryMock() {
           ))}
         </div>
         <div className="lp-mock__insights">
-          <strong><Sparkles size={15} />Insights</strong>
+          <strong><Sparkles size={15} />AI insights</strong>
           <ul>{SAMPLE_INSIGHTS.map((t) => <li key={t}><CheckCircle2 size={15} />{t}</li>)}</ul>
           <span className="lp-mock__badge">ITR<br />ready</span>
         </div>
@@ -55,7 +55,7 @@ export function Features() {
     <section className="lp-section lp-section--tint" id="features">
       <div className="lp-wrap lp-features">
         <div>
-          <h2>More than ITR filing. <em>Your tax assistant.</em></h2>
+          <h2>More than ITR filing —<br />Your <em>AI Financial Assistant</em></h2>
           <p className="lp-features__lead">A smart, simple and secure way to understand, organise and file your taxes.</p>
           <ul className="lp-features__list">
             {FEATURES.map(({ icon: Icon, title, text }) => (
@@ -72,15 +72,25 @@ export function Features() {
   );
 }
 
-export function Assurances() {
+export function Testimonials() {
   return (
-    <section className="lp-section lp-section--tight" id="security">
+    <section className="lp-testimonials" aria-labelledby="lp-testimonials-title">
       <div className="lp-wrap">
-        <ul className="lp-assure">
-          {ASSURANCES.map(({ icon: Icon, title, text }) => (
-            <li key={title}><span className="lp-assure__icon"><Icon size={22} /></span><div><strong>{title}</strong><span>{text}</span></div></li>
+        <h2 id="lp-testimonials-title">Loved by taxpayers like you</h2>
+        <div className="lp-testimonials__grid">
+          {TESTIMONIALS.map(({ quote, name, role }) => (
+            <article key={name} className="lp-testimonial">
+              <p>“{quote}”</p>
+              <div className="lp-testimonial__footer">
+                <span className="lp-testimonial__avatar" aria-hidden="true">{name.split(' ').map((part) => part[0]).join('')}</span>
+                <span className="lp-testimonial__person"><strong>{name}</strong><span>{role}</span></span>
+                <span className="lp-testimonial__stars" aria-label="5 out of 5 stars">
+                  {Array.from({ length: 5 }, (_, i) => <Star key={i} size={14} fill="currentColor" />)}
+                </span>
+              </div>
+            </article>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );
@@ -91,9 +101,9 @@ export function Pricing() {
     <section className="lp-section" id="pricing">
       <div className="lp-wrap">
         <header className="lp-head">
-          <span className="lp-pill lp-pill--soft">Simple and transparent</span>
-          <h2>Choose the right way to file</h2>
-          <p>Finora is free while it is in early access.</p>
+          <span className="lp-pill lp-pill--soft">Simple &amp; transparent pricing</span>
+          <h2>Choose the right plan for you</h2>
+          <p>Clear options for every stage of your return.</p>
         </header>
         <div className="lp-plans">
           {PLANS.map((p) => (
@@ -117,10 +127,10 @@ export function FinalCta() {
       <div className="lp-cta">
         <div className="lp-cta__brand"><Logo to="/" /><span>Your AI-powered tax &amp; financial assistant for India.</span></div>
         <div className="lp-cta__text">
-          <h2>Ready to file your ITR the easy way?</h2>
+          <h2>Ready to file your ITR the smarter way?</h2>
           <p>Upload your bank statements and let Finora do the heavy work.</p>
         </div>
-        <Link to="/register" className="lp-btn lp-btn--white lp-btn--lg">Start your ITR<ArrowRight size={18} /></Link>
+        <Link to="/register" className="lp-btn lp-btn--white lp-btn--lg">Start your ITR with AI<ArrowRight size={18} /></Link>
       </div>
     </section>
   );

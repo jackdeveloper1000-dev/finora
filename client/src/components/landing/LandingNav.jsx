@@ -42,6 +42,7 @@ function ResourcesMenu() {
 
 export default function LandingNav() {
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const onKey = (e) => e.key === 'Escape' && setOpen(false);
@@ -49,12 +50,45 @@ export default function LandingNav() {
     return () => document.removeEventListener('keydown', onKey);
   }, []);
 
+  useEffect(() => {
+    let frame = 0;
+    const updateActiveSection = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const headerBottom = document.querySelector('.lp-nav')?.getBoundingClientRect().bottom ?? 0;
+        let current = 'home';
+        NAV_LINKS.forEach(({ href }) => {
+          const section = document.querySelector(href);
+          if (section && section.getBoundingClientRect().top <= headerBottom + 32) {
+            current = href.slice(1);
+          }
+        });
+        setActiveSection(current);
+      });
+    };
+
+    updateActiveSection();
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    window.addEventListener('resize', updateActiveSection);
+    window.addEventListener('hashchange', updateActiveSection);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', updateActiveSection);
+      window.removeEventListener('resize', updateActiveSection);
+      window.removeEventListener('hashchange', updateActiveSection);
+    };
+  }, []);
+
   return (
     <header className="lp-nav">
       <div className="lp-nav__bar">
         <span className="lp-logo"><Logo to="/" /></span>
         <nav className="lp-nav__links" aria-label="Sections">
-          {NAV_LINKS.map((l, i) => <a key={l.href} href={l.href} className={i === 0 ? 'is-active' : ''}>{l.label}</a>)}
+          {NAV_LINKS.map((l) => (
+            <a key={l.href} href={l.href} className={activeSection === l.href.slice(1) ? 'is-active' : undefined} aria-current={activeSection === l.href.slice(1) ? 'location' : undefined}>
+              {l.label}
+            </a>
+          ))}
           <ResourcesMenu />
         </nav>
         <div className="lp-nav__actions">
@@ -67,7 +101,11 @@ export default function LandingNav() {
       </div>
       {open && (
         <nav className="lp-nav__menu" aria-label="Mobile sections">
-          {NAV_LINKS.map((l) => <a key={l.href} href={l.href} onClick={() => setOpen(false)}>{l.label}</a>)}
+          {NAV_LINKS.map((l) => (
+            <a key={l.href} href={l.href} className={activeSection === l.href.slice(1) ? 'is-active' : undefined} aria-current={activeSection === l.href.slice(1) ? 'location' : undefined} onClick={() => setOpen(false)}>
+              {l.label}
+            </a>
+          ))}
           {RESOURCES.map((r) => <ResourceLink key={r.label} item={r} onClick={() => setOpen(false)} />)}
           <Link to="/login" onClick={() => setOpen(false)}>Log in</Link>
         </nav>

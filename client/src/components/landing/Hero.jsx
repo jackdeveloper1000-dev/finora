@@ -10,19 +10,24 @@ function FlowDiagram() {
           <li key={label}><Icon size={22} />{label}</li>
         ))}
       </ul>
-      <svg className="lp-flow__lines" viewBox="0 0 120 300" preserveAspectRatio="none">
-        {[38, 112, 188, 262].map((y) => <path key={y} d={`M0 ${y} C 60 ${y}, 60 150, 120 150`} />)}
+      <svg className="lp-flow__lines" viewBox="0 0 120 280" preserveAspectRatio="none">
+        {[41, 115, 181, 247].map((y) => <path key={y} d={`M0 ${y} C 48 ${y}, 72 140, 120 140`} />)}
       </svg>
-      <div className="lp-flow__core"><Sparkles size={30} /><strong>Finora</strong><span>Engine</span></div>
+      <div className="lp-flow__engine">
+        <div className="lp-flow__core"><Sparkles size={30} /><strong>Finora AI</strong></div>
+        <svg className="lp-flow__arrow" viewBox="0 0 36 16" aria-hidden="true">
+          <path d="M1 8h32m-6-6 6 6-6 6" />
+        </svg>
+      </div>
       <div className="lp-flow__result">
         <span className="lp-flow__tick"><CheckCircle2 size={26} /></span>
         <strong>ITR ready</strong>
         <ul>
           <li><CheckCircle2 size={15} />Income analysed</li>
           <li><CheckCircle2 size={15} />Taxes reconciled</li>
-          <li><CheckCircle2 size={15} />Return prepared</li>
+          <li><CheckCircle2 size={15} />ITR prepared</li>
         </ul>
-        <span className="lp-flow__file"><Send size={15} />Approve and download</span>
+        <span className="lp-flow__file"><Send size={15} />File ITR</span>
       </div>
     </div>
   );
@@ -33,11 +38,11 @@ export default function Hero() {
     <section className="lp-hero" id="home">
       <div className="lp-wrap lp-hero__grid">
         <div className="lp-hero__copy">
-          <span className="lp-pill"><Sparkles size={14} />AY 2026-27 · ITR-1 for salaried income</span>
-          <h1>Turn your financial documents into a tax-ready ITR <em>with Finora.</em></h1>
-          <p>Upload your bank statements. Finora reads them, sorts your income, compares the tax regimes and prepares your ITR, accurately, securely and in minutes.</p>
+          <span className="lp-pill"><Sparkles size={14} />Your AI-powered tax &amp; financial assistant for India.</span>
+          <h1>Turn your financial documents into a tax-ready ITR <em>with AI.</em></h1>
+          <p>Upload your bank statements, Form 16, AIS, 26AS and investment documents. Finora organizes your finances, reconciles the data and prepares your ITR for review—securely and in minutes.</p>
           <div className="lp-hero__actions">
-            <Link to="/register" className="lp-btn lp-btn--solid lp-btn--lg">Start your ITR<ArrowRight size={18} /></Link>
+            <Link to="/register" className="lp-btn lp-btn--solid lp-btn--lg">Start your ITR with AI<ArrowRight size={18} /></Link>
             <a href="#how" className="lp-btn lp-btn--outline lp-btn--lg"><Play size={16} />See how it works</a>
           </div>
           <ul className="lp-hero__trust">

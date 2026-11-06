@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import Hero from '../components/landing/Hero';
 import LandingNav from '../components/landing/LandingNav';
-import { Assurances, Features, FinalCta, HowItWorks, LandingFooter, Pricing } from '../components/landing/Sections';
+import { Features, FinalCta, HowItWorks, LandingFooter, Pricing, Testimonials } from '../components/landing/Sections';
 import { useAuth } from '../context/AuthContext';
 
 const TITLE = 'Finora — Your AI-powered tax & financial assistant for India';
@@ -24,8 +24,8 @@ export default function Landing() {
         <Hero />
         <HowItWorks />
         <Features />
-        <Assurances />
         <Pricing />
+        <Testimonials />
         <FinalCta />
       </main>
       <LandingFooter />
